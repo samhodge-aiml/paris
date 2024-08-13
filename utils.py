@@ -10,7 +10,7 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import dendrogram
-from louvain import louvain
+from .louvain import louvain
 from os.path import join
 
 #########################
