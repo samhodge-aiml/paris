@@ -5,7 +5,7 @@
 #    Bertrand Charpentier <bertrand.charpentier@live.fr>
 #    All rights reserved.
 #    BSD license.
-
+import typing as T
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -45,16 +45,17 @@ def plot_best_clusterings(G, D, k, pos, width = 16, height = 8):
     plt.show()
 
 # Plot dendrogram
-def plot_dendrogram(D, logscale = True):
+def plot_dendrogram(D, logscale = True) -> T.Dict[str, T.Any]:
     plt.figure(figsize=(25, 10))
     Dlog = D.copy()
     if logscale:
         Dlog[:,2] = np.log(Dlog[:,2])
         Dlog[1:,2] =  Dlog[1:,2] - Dlog[1,2]
         Dlog[0,2] = 0
-    dendrogram(Dlog,leaf_rotation=90.)
+    result: T.Dict[str,T.Any] = dendrogram(Dlog,leaf_rotation=90.)
     plt.axis('off')
     plt.show()
+    return result
     
 # Print names of the elements of the k largest clusters
 def show_largest_clusters(C, G, name, k = 10):
